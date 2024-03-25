@@ -147,7 +147,7 @@ podman system df
 
 - Сценарий "Как авторизоваться в артифактори?"
 ```shell
-podman logout
+podman logout #{{ registry-host }} лучше указывать откуда откючаться
 podman login {{ registry-host }}  # a.r.r - авторизация в артифактори
 ```
 
