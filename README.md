@@ -138,38 +138,42 @@ su -
 
 When участники *именуют сценарии*, выполняют команды и анализируют их вывод и поведение
 ----
-- Сценарий "Как ...?"
+- Сценарий "Как ...?" - общая системная информация
 ```shell
 podman version # TODO: собственные пометки участников для будущего использования в проектах
 podman system info
 podman system df
 ```
 
-- Сценарий "Как ...?"
+- Сценарий "Как авторизоваться в артифактори?"
 ```shell
 podman logout
-podman login {{ registry-host }}  # a.r.r
+podman login {{ registry-host }}  # a.r.r - авторизация в артифактори
 ```
 
 - Сценарий "Как найти нужный образ в registry?"
 Залогиниться браузером по адресу {{ registry-host }}, в поиске найти нужный образ и скопировать полное символьное имя (включая сетевой адрес хоста).
 
-- Сценарий "Как ...?"
+- Сценарий "Как скачать образ?" 
 ```shell
-podman image pull {{ registry-host }}/{{ os-images-path }}/alpine:3.14  # a.r.r/ext-rbru-osimage-docker/alpine:3.14
+podman image pull {{ registry-host }}/{{ os-images-path }}/alpine:3.14  # artifactory.raiffeisen.ru/ext-rbru-osimage-docker/alpine:3.14
 podman system df
+#sudo podman system df
+#TYPE           TOTAL       ACTIVE      SIZE        RECLAIMABLE
+#Images         1           0           6.147MB     6.147MB (100%)
 ````
 
-- Сценарий "Как ...?"
+- Сценарий "Как запустить конейтенр с указанным именем?" #если в скаченных конт-х его нет, то подман попытается его скачать
+# --name ключ явно указывает имя контейнера для скачиваемого образа полным адресом
 ```shell
 podman container run hello
 
-podman container run --name demo -it {{ registry-host }}/{{ os-images-path }}/alpine:3.14
+podman container run --name demo -it artifactory.raiffeisen.ru/ext-rbru-osimage-docker/alpine:3.14
 /# cat /etc/os-release
 /# exit 
 ```
 
-- Сценарий "Как ...?"
+- Сценарий "Как посмотреть список запущенных/запущенных контейнеров и удалить контейнер из скаченных?"
 ```shell
 podman container ls [--all]
 podman container rm demo
